@@ -7,12 +7,11 @@ class CourseExplorer {
             selectedDirection: 'all',
             favorites: JSON.parse(localStorage.getItem('courseFavorites') || '[]'),
             searchQuery: '',
-            selectedCourses: JSON.parse(localStorage.getItem('selectedCourses') || '[]'),
-            viewMode: 'grid', // grid, schedule, recommendations
+            selectedCourses: JSON.parse(localStorage.getItem('selectedCourses') || '[]'),            viewMode: 'grid', // grid, schedule, recommendations
             // 新增筛选状态
             showFavorites: false,
             showSelected: false,
-            filtersExpanded: false
+            filtersExpanded: true
         };
         
         this.init();
@@ -1066,11 +1065,17 @@ class CourseExplorer {
                             <span>${course.weeks}</span>
                         </div>
                     ` : ''}
-                    
-                    ${course.teachers && course.teachers.length > 0 ? `
+                      ${course.time_slots && course.time_slots.length > 0 ? `
                         <div class="course-detail-row">
-                            <i data-lucide="user" class="course-detail-icon"></i>
-                            <span>${course.teachers.join(' / ')}</span>
+                            <i data-lucide="clock" class="course-detail-icon"></i>
+                            <div class="time-slots">
+                                ${course.time_slots.map(slot => `
+                                    <span class="time-slot">
+                                        ${slot.weekday} ${slot.period}
+                                        ${slot.note ? `(${slot.note})` : ''}
+                                    </span>
+                                `).join('')}
+                            </div>
                         </div>
                     ` : ''}
                     
@@ -1101,9 +1106,10 @@ class CourseExplorer {
                         ${course.description}
                     </div>
                 ` : ''}
-            </div>
-        `;
-    }    // 渲染简化的课程网格（用于三视图布局）
+            </div>        `;
+    }
+
+    // 渲染简化的课程网格（用于三视图布局）
     renderCoursesGridSimple(courses) {
         if (courses.length === 0) {
             return `
@@ -1118,17 +1124,45 @@ class CourseExplorer {
             <div class="courses-grid-simple">
                 ${courses.map(course => {
                     const isSelected = this.state.selectedCourses.some(c => c.name === course.name);
-                    const isFavorite = this.state.favorites.includes(course.name);
-                    const hasConflict = this.detectTimeConflicts(this.state.selectedCourses).some(
-                        conflict => conflict.course1 === course.name || conflict.course2 === course.name
-                    );
-                    const typeInfo = this.getCourseTypeStyle(course);
+                    const isFavorite = this.state.favorites.includes(course.name);                    // 实时检测冲突 - 检查当前课程是否与其他课程冲突
+                    let hasConflict = false;
+                    let conflictInfo = null;
+                    let isStrongConflict = false; // 是否为强冲突（已选课程间的冲突）
                     
-                    return `
-                        <div class="course-card-simple ${isSelected ? 'selected' : ''} ${hasConflict ? 'conflict' : ''}"
+                    if (course.time_slots) {
+                        // 获取要检查的课程列表
+                        const coursesToCheck = isSelected 
+                            ? this.state.selectedCourses.filter(c => c.name !== course.name) // 已选课程检查其他已选课程
+                            : this.state.selectedCourses; // 未选课程检查所有已选课程
+                            
+                        if (coursesToCheck.length > 0) {
+                            for (const otherCourse of coursesToCheck) {
+                                if (!otherCourse.time_slots) continue;
+                                for (const slot1 of course.time_slots) {
+                                    for (const slot2 of otherCourse.time_slots) {
+                                        if (slot1.weekday === slot2.weekday && slot1.period === slot2.period) {
+                                            hasConflict = true;
+                                            isStrongConflict = isSelected; // 已选课程的冲突为强冲突
+                                            conflictInfo = {
+                                                courseName: otherCourse.name,
+                                                time: `${slot1.weekday} ${slot1.period}`
+                                            };
+                                            break;
+                                        }
+                                    }
+                                    if (hasConflict) break;
+                                }
+                                if (hasConflict) break;
+                            }
+                        }
+                    }
+                    
+                    const typeInfo = this.getCourseTypeStyle(course);
+                      return `
+                        <div class="course-card-simple ${isSelected ? 'selected' : ''} ${hasConflict ? (isStrongConflict ? 'strong-conflict' : 'conflict') : ''}"
                              data-action="showCourseDetail"
                              data-params='${JSON.stringify({course})}'>
-                            ${hasConflict ? '<div class="conflict-badge">冲突</div>' : ''}
+                            ${hasConflict ? `<div class="conflict-badge ${isStrongConflict ? 'strong' : ''}" title="与《${conflictInfo.courseName}》在${conflictInfo.time}冲突">${isStrongConflict ? '严重冲突' : '时间冲突'}</div>` : ''}
                             
                             <div class="course-name">${course.name}</div>
                             <div class="course-meta">
@@ -1136,7 +1170,10 @@ class CourseExplorer {
                                     ${typeInfo.label}
                                 </span>
                                 <span>${course.credits || 3} 学分</span>
-                                ${course.teachers ? `<span>${course.teachers.join(', ')}</span>` : ''}
+                                <span class="course-time">${course.time_slots && course.time_slots.length > 0 ? 
+                                    course.time_slots.map(slot => `${slot.weekday} ${slot.period}`).join(', ') : 
+                                    '时间待定'
+                                }</span>
                             </div>
                             
                             <div class="course-actions" style="margin-top: 8px; display: flex; gap: 8px;">
@@ -1252,24 +1289,58 @@ class CourseExplorer {
         }
         
         return `
-            <div class="recommendations-list">
-                ${recommendations.map(course => {
+            <div class="recommendations-list">                ${recommendations.map(course => {
                     const isSelected = this.state.selectedCourses.some(c => c.name === course.name);
                     const isFavorite = this.state.favorites.includes(course.name);
                     const typeInfo = this.getCourseTypeStyle(course);
                     
+                    // 实时检测冲突 - 与主列表保持一致的冲突检测逻辑
+                    let hasConflict = false;
+                    let conflictInfo = null;
+                    let isStrongConflict = false;
+                    
+                    if (course.time_slots) {
+                        const coursesToCheck = isSelected 
+                            ? this.state.selectedCourses.filter(c => c.name !== course.name)
+                            : this.state.selectedCourses;
+                            
+                        if (coursesToCheck.length > 0) {
+                            for (const otherCourse of coursesToCheck) {
+                                if (!otherCourse.time_slots) continue;
+                                for (const slot1 of course.time_slots) {
+                                    for (const slot2 of otherCourse.time_slots) {
+                                        if (slot1.weekday === slot2.weekday && slot1.period === slot2.period) {
+                                            hasConflict = true;
+                                            isStrongConflict = isSelected;
+                                            conflictInfo = {
+                                                courseName: otherCourse.name,
+                                                time: `${slot1.weekday} ${slot1.period}`
+                                            };
+                                            break;
+                                        }
+                                    }
+                                    if (hasConflict) break;
+                                }
+                                if (hasConflict) break;
+                            }
+                        }
+                    }
+                    
                     return `
-                        <div class="course-card-simple ${isSelected ? 'selected' : ''}"
+                        <div class="course-card-simple ${isSelected ? 'selected' : ''} ${hasConflict ? (isStrongConflict ? 'strong-conflict' : 'conflict') : ''}"
                              data-action="showCourseDetail"
                              data-params='${JSON.stringify({course})}'>
+                            ${hasConflict ? `<div class="conflict-badge ${isStrongConflict ? 'strong' : ''}" title="与《${conflictInfo.courseName}》在${conflictInfo.time}冲突">${isStrongConflict ? '严重冲突' : '时间冲突'}</div>` : ''}
                             
-                            <div class="course-name">${course.name}</div>
-                            <div class="course-meta">
+                            <div class="course-name">${course.name}</div>                            <div class="course-meta">
                                 <span class="course-type-badge" style="background: ${typeInfo.color}">
                                     ${typeInfo.label}
                                 </span>
                                 <span>${course.credits || 3} 学分</span>
-                                ${course.teachers ? `<span>${course.teachers.join(', ')}</span>` : ''}
+                                <span class="course-time">${course.time_slots && course.time_slots.length > 0 ? 
+                                    course.time_slots.map(slot => `${slot.weekday} ${slot.period}`).join(', ') : 
+                                    '时间待定'
+                                }</span>
                             </div>
                             
                             <div class="course-actions" style="margin-top: 8px; display: flex; gap: 8px;">
