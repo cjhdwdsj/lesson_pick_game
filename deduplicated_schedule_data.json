@@ -1,0 +1,1495 @@
+{
+  "schedule_data": {
+    "2024": {
+      "1": [
+        {
+          "name": "数学分析（I）",
+          "weeks": "3-17周",
+          "teachers": ["夏超", "欧剑宇", "张中新", "程金发"],
+          "rooms": ["海韵教学楼306", "海韵教学楼202", "海韵教学楼307"],
+          "time_slots": [
+            {"weekday": "星期一", "period": "第一节"},
+            {"weekday": "星期三", "period": "第三节"},
+            {"weekday": "星期四", "period": "第三节"}
+          ],
+          "grade": "2024",
+          "semester": 1,
+          "type": "强基"
+        },
+        {
+          "name": "解析几何", 
+          "weeks": "3-17周",
+          "teachers": ["邱春晖", "李锦堂"],
+          "rooms": ["海韵教学楼207", "海韵教学楼206"],
+          "time_slots": [
+            {"weekday": "星期二", "period": "第一节"},
+            {"weekday": "星期五", "period": "第一节"}
+          ],
+          "grade": "2024",
+          "semester": 1
+        },
+        {
+          "name": "高等代数（I）",
+          "weeks": "3-17周",
+          "teachers": ["杜妮", "阮诗佺", "易少云"],
+          "rooms": ["海韵教学楼202", "海韵教学楼307", "海韵教学楼306"],
+          "time_slots": [
+            {"weekday": "星期三", "period": "第一节"},
+            {"weekday": "星期一", "period": "第三节"},
+            {"weekday": "星期五", "period": "第三节"}
+          ],
+          "grade": "2024",
+          "semester": 1,
+          "type": "强基"
+        },
+        {
+          "name": "大学英语",
+          "weeks": "",
+          "teachers": [],
+          "rooms": [],
+          "time_slots": [
+            {"weekday": "星期四", "period": "第一节"}
+          ],
+          "grade": "2024",
+          "semester": 1
+        },
+        {
+          "name": "新生研讨课",
+          "weeks": "6-13周",
+          "teachers": ["吴伟胜"],
+          "rooms": ["海韵教学楼104"],
+          "time_slots": [
+            {"weekday": "星期二", "period": "第三节"}
+          ],
+          "grade": "2024",
+          "semester": 1
+        },
+        {
+          "name": "大学语文",
+          "weeks": "3-17周",
+          "teachers": ["蔡淑美"],
+          "rooms": ["海韵教学楼104"],
+          "time_slots": [
+            {"weekday": "星期四", "period": "第五节"}
+          ],
+          "grade": "2024",
+          "semester": 1
+        },
+        {
+          "name": "数学分析（I）习题课",
+          "weeks": "",
+          "teachers": ["吴明燕"],
+          "rooms": ["海韵教学楼104"],
+          "time_slots": [
+            {"weekday": "星期五", "period": "第五节"}
+          ],
+          "grade": "2024",
+          "semester": 1
+        },
+        {
+          "name": "形势与政策（1）",
+          "weeks": "9-16周，单",
+          "teachers": ["方晨亮", "丁昌利", "许温洁", "华盈鑫"],
+          "rooms": ["海韵教学楼101"],
+          "time_slots": [
+            {"weekday": "星期一", "period": "第七节"}
+          ],
+          "grade": "2024",
+          "semester": 1
+        },
+        {
+          "name": "思想道德要与法治",
+          "weeks": "",
+          "teachers": ["蒋月", "王圣宠"],
+          "rooms": ["海韵教学楼307", "海韵教学楼306"],
+          "time_slots": [
+            {"weekday": "星期二", "period": "第七节"}
+          ],
+          "grade": "2024",
+          "semester": 1
+        },
+        {
+          "name": "大学体育",
+          "weeks": "",
+          "teachers": [],
+          "rooms": [],
+          "time_slots": [
+            {"weekday": "星期四", "period": "第七节"}
+          ],
+          "grade": "2024",
+          "semester": 1
+        },
+        {
+          "name": "高等代数（I）习题课",
+          "weeks": "",
+          "teachers": ["林章立"],
+          "rooms": ["海韵教学楼104"],
+          "time_slots": [
+            {"weekday": "星期三", "period": "第九节"}
+          ],
+          "grade": "2024",
+          "semester": 1
+        }
+      ],
+      "2": [
+        {
+          "name": "数学分析（II）",
+          "weeks": "1-16周",
+          "teachers": ["张中新", "程金发", "徐新英"],
+          "rooms": ["海韵教学楼206", "海韵教学楼207", "海韵教学楼202"],
+          "time_slots": [
+            {"weekday": "星期一", "period": "第一节"},
+            {"weekday": "星期三", "period": "第三节"},
+            {"weekday": "星期五", "period": "第三节"}
+          ],
+          "grade": "2024",
+          "semester": 2,
+          "type": "拔尖强基"
+        },
+        {
+          "name": "高等代数（II）",
+          "weeks": "1-16周",
+          "teachers": ["杜妮", "阮诗佺", "陈继勇"],
+          "rooms": ["海韵教学楼206", "海韵教学楼207", "海韵教学楼202"],
+          "time_slots": [
+            {"weekday": "星期三", "period": "第一节"},
+            {"weekday": "星期五", "period": "第一节"},
+            {"weekday": "星期一", "period": "第三节"}
+          ],
+          "grade": "2024",
+          "semester": 2,
+          "type": "拔尖强基"
+        },
+        {
+          "name": "大学英语",
+          "weeks": "",
+          "teachers": [],
+          "rooms": [],
+          "time_slots": [
+            {"weekday": "星期四", "period": "第一节"}
+          ],
+          "grade": "2024",
+          "semester": 2
+        },
+        {
+          "name": "大学物理B（上）",
+          "weeks": "",
+          "teachers": ["任雪畅", "李盼盼", "王行之"],
+          "rooms": ["海韵教学楼102", "海韵教学楼202"],
+          "time_slots": [
+            {"weekday": "星期二", "period": "第三节"},
+            {"weekday": "星期四", "period": "第五节", "note": "2-16周，双"}
+          ],
+          "grade": "2024",
+          "semester": 2
+        },
+        {
+          "name": "数学分析（II）习题课",
+          "weeks": "",
+          "teachers": ["周楚宇", "赵润中"],
+          "rooms": ["海韵教学楼206", "海韵教学楼104"],
+          "time_slots": [
+            {"weekday": "星期四", "period": "第三节"}
+          ],
+          "grade": "2024",
+          "semester": 2
+        },
+        {
+          "name": "计算机应用基础",
+          "weeks": "",
+          "teachers": ["黄绍辉", "林颖"],
+          "rooms": ["嘉五601", "嘉五602", "嘉五603", "嘉五605"],
+          "time_slots": [
+            {"weekday": "星期二", "period": "第五节"}
+          ],
+          "grade": "2024",
+          "semester": 2
+        },
+        {
+          "name": "C程序设计基础A",
+          "weeks": "",
+          "teachers": ["黄洪艺"],
+          "rooms": ["嘉四202", "嘉四204", "嘉五601", "嘉五602", "嘉五603", "嘉五605"],
+          "time_slots": [
+            {"weekday": "星期三", "period": "第五节"},
+            {"weekday": "星期三", "period": "第七节"}
+          ],
+          "grade": "2024",
+          "semester": 2
+        },
+        {
+          "name": "大学生心理健康",
+          "weeks": "1-15周，单",
+          "teachers": ["徐岚", "黄依梵"],
+          "rooms": ["海韵教学楼306", "海韵教学楼101"],
+          "time_slots": [
+            {"weekday": "星期五", "period": "第五节"}
+          ],
+          "grade": "2024",
+          "semester": 2
+        },
+        {
+          "name": "形势与政策（2）",
+          "weeks": "9-16周，单",
+          "teachers": ["方晨亮", "周达", "谢文豪"],
+          "rooms": ["海韵教学楼101"],
+          "time_slots": [
+            {"weekday": "星期一", "period": "第七节"}
+          ],
+          "grade": "2024",
+          "semester": 2
+        },
+        {
+          "name": "中国近现代史纲要",
+          "weeks": "",
+          "teachers": ["佳宏伟", "王洪才", "龙坚毅"],
+          "rooms": ["海韵教学楼101", "海韵教学楼201", "海韵教学楼102"],
+          "time_slots": [
+            {"weekday": "星期四", "period": "第七节"}
+          ],
+          "grade": "2024",
+          "semester": 2
+        },
+        {
+          "name": "组合数学",
+          "weeks": "1-16周",
+          "teachers": ["靳宇"],
+          "rooms": ["海韵教学楼104"],
+          "time_slots": [
+            {"weekday": "星期一", "period": "第九节"}
+          ],
+          "grade": "2024",
+          "semester": 2
+        },
+        {
+          "name": "高等代数（II）习题课",
+          "weeks": "",
+          "teachers": ["乔艳丽", "任天寅"],
+          "rooms": ["海韵教学楼102", "海韵教学楼104"],
+          "time_slots": [
+            {"weekday": "星期三", "period": "第九节"}
+          ],
+          "grade": "2024",
+          "semester": 2
+        }
+      ],
+      "3": [
+        {
+          "name": "数理逻辑",
+          "weeks": "小学期",
+          "teachers": [],
+          "rooms": [],
+          "time_slots": [],
+          "grade": "2024",
+          "semester": 3,
+          "type": "小学期选修",
+          "credits": 1,
+          "hours": 20,
+          "description": "大一小学期课程 - 短学期任意选修课"
+        },
+        {
+          "name": "Matlab基础",
+          "weeks": "小学期", 
+          "teachers": [],
+          "rooms": [],
+          "time_slots": [],
+          "grade": "2024",
+          "semester": 3,
+          "type": "小学期选修",
+          "credits": 1,
+          "hours": 20,
+          "description": "大一小学期课程 - 短学期任意选修课，跨学科课程"
+        },
+        {
+          "name": "数学史",
+          "weeks": "小学期",
+          "teachers": [],
+          "rooms": [],
+          "time_slots": [],
+          "grade": "2024",
+          "semester": 3,
+          "type": "小学期选修",
+          "credits": 1,
+          "hours": 20,
+          "description": "大一小学期课程 - 短学期任意选修课"
+        },
+        {
+          "name": "利息理论",
+          "weeks": "小学期",
+          "teachers": [],
+          "rooms": [],
+          "time_slots": [],
+          "grade": "2024",
+          "semester": 3,
+          "type": "小学期选修",
+          "credits": 1,
+          "hours": 20,
+          "description": "大一小学期课程 - 短学期任意选修课"
+        },
+        {
+          "name": "绳圈的数学",
+          "weeks": "小学期",
+          "teachers": [],
+          "rooms": [],
+          "time_slots": [],
+          "grade": "2024",
+          "semester": 3,
+          "type": "小学期选修",
+          "credits": 1,
+          "hours": 20,
+          "description": "大一小学期课程 - 短学期任意选修课"
+        }
+      ]
+    },
+    "2023": {
+      "1": [
+        {
+          "name": "概率论",
+          "weeks": "1-17周",
+          "teachers": ["周达"],
+          "rooms": ["海韵教学楼204"],
+          "time_slots": [
+            {"weekday": "星期一", "period": "第一节"},
+            {"weekday": "星期三", "period": "第五节"}
+          ],
+          "grade": "2023",
+          "semester": 1
+        },
+        {
+          "name": "数学分析III",
+          "weeks": "1-17周",
+          "teachers": ["詹伟城", "徐新英"],
+          "rooms": ["海韵教学楼101", "海韵教学楼302"],
+          "time_slots": [
+            {"weekday": "星期三", "period": "第一节"},
+            {"weekday": "星期五", "period": "第一节"},
+            {"weekday": "星期一", "period": "第三节"}
+          ],
+          "grade": "2023",
+          "semester": 1,
+          "type": "拔尖强基班"
+        },
+        {
+          "name": "抽象代数",
+          "weeks": "1-17周",
+          "teachers": ["余铌娜", "谭绍滨", "余世霖"],
+          "rooms": ["海韵教学楼206", "海韵教学楼207"],
+          "time_slots": [
+            {"weekday": "星期四", "period": "第一节"},
+            {"weekday": "星期二", "period": "第三节"}
+          ],
+          "grade": "2023",
+          "semester": 1,
+          "type": "拔尖强基班"
+        },
+        {
+          "name": "大学物理B（下）",
+          "weeks": "",
+          "teachers": ["吴建洋", "吴顺情"],
+          "rooms": ["海韵教学楼206", "海韵教学楼207"],
+          "time_slots": [
+            {"weekday": "星期三", "period": "第三节"},
+            {"weekday": "星期五", "period": "第三节"}
+          ],
+          "grade": "2023",
+          "semester": 1
+        },
+        {
+          "name": "常微分方程",
+          "weeks": "1-17周",
+          "teachers": ["王焰金", "罗珍"],
+          "rooms": ["海韵教学楼201", "海韵教学楼302"],
+          "time_slots": [
+            {"weekday": "星期四", "period": "第三节"},
+            {"weekday": "星期二", "period": "第五节"}
+          ],
+          "grade": "2023",
+          "semester": 1,
+          "type": "拔尖强基班"
+        },
+        {
+          "name": "大学英语",
+          "weeks": "",
+          "teachers": [],
+          "rooms": [],
+          "time_slots": [
+            {"weekday": "星期四", "period": "第五节"}
+          ],
+          "grade": "2023",
+          "semester": 1
+        },
+        {
+          "name": "形势与政策（3）",
+          "weeks": "9-16周，单",
+          "teachers": ["方晨亮", "丁昌利", "许温洁", "华盈鑫"],
+          "rooms": ["海韵教学楼201"],
+          "time_slots": [
+            {"weekday": "星期一", "period": "第七节"}
+          ],
+          "grade": "2023",
+          "semester": 1
+        },
+        {
+          "name": "毛泽东思想和中国特色社会主义理论体系概论",
+          "weeks": "",
+          "teachers": ["袁华", "黄佳佳"],
+          "rooms": ["海韵教学楼206", "海韵教学楼207"],
+          "time_slots": [
+            {"weekday": "星期二", "period": "第七节"}
+          ],
+          "grade": "2023",
+          "semester": 1
+        },
+        {
+          "name": "经济学基础",
+          "weeks": "1-17周",
+          "teachers": ["刘根荣"],
+          "rooms": ["海韵教学楼101"],
+          "time_slots": [
+            {"weekday": "星期四", "period": "第七节"},
+            {"weekday": "星期二", "period": "第九节"}
+          ],
+          "grade": "2023",
+          "semester": 1
+        },
+        {
+          "name": "初等数论",
+          "weeks": "1-17周",
+          "teachers": ["易少云"],
+          "rooms": ["海韵教学楼104"],
+          "time_slots": [
+            {"weekday": "星期一", "period": "第九节"}
+          ],
+          "grade": "2023",
+          "semester": 1
+        }
+      ],
+      "2": [
+        {
+          "name": "数理统计",
+          "weeks": "1-16周",
+          "teachers": ["王海斌"],
+          "rooms": ["海韵教学楼104"],
+          "time_slots": [
+            {"weekday": "星期一", "period": "第一节"},
+            {"weekday": "星期四", "period": "第一节"}
+          ],
+          "grade": "2023",
+          "semester": 2
+        },
+        {
+          "name": "微分几何",
+          "weeks": "1-16周",
+          "teachers": ["贺飞", "欧剑宇"],
+          "rooms": ["海韵教学楼207", "海韵教学楼201"],
+          "time_slots": [
+            {"weekday": "星期二", "period": "第一节"},
+            {"weekday": "星期四", "period": "第三节"}
+          ],
+          "grade": "2023",
+          "semester": 2,
+          "type": "拔尖强基"
+        },
+        {
+          "name": "随机过程",
+          "weeks": "1-16周",
+          "teachers": ["吴明燕"],
+          "rooms": ["海韵教学楼201"],
+          "time_slots": [
+            {"weekday": "星期三", "period": "第一节"},
+            {"weekday": "星期五", "period": "第三节"}
+          ],
+          "grade": "2023",
+          "semester": 2
+        },
+        {
+          "name": "习近平新时代中国特色社会主义思想概论",
+          "weeks": "",
+          "teachers": ["赵颖", "黄佳佳"],
+          "rooms": ["海韵教学楼101", "海韵教学楼102"],
+          "time_slots": [
+            {"weekday": "星期五", "period": "第一节"}
+          ],
+          "grade": "2023",
+          "semester": 2
+        },
+        {
+          "name": "偏微分方程",
+          "weeks": "1-16周",
+          "teachers": ["王焰金", "张剑文"],
+          "rooms": ["海韵教学楼102", "海韵教学楼101"],
+          "time_slots": [
+            {"weekday": "星期一", "period": "第三节"},
+            {"weekday": "星期三", "period": "第三节"}
+          ],
+          "grade": "2023",
+          "semester": 2
+        },
+        {
+          "name": "军事理论",
+          "weeks": "1-16周",
+          "teachers": ["邵贵文", "高继光"],
+          "rooms": ["海韵教学楼206", "海韵教学楼101"],
+          "time_slots": [
+            {"weekday": "星期二", "period": "第三节"}
+          ],
+          "grade": "2023",
+          "semester": 2
+        },
+        {
+          "name": "数学建模",
+          "weeks": "1-16周",
+          "teachers": ["谭忠"],
+          "rooms": ["海韵教学楼104"],
+          "time_slots": [
+            {"weekday": "星期一", "period": "第五节"},
+            {"weekday": "星期三", "period": "第五节"}
+          ],
+          "grade": "2023",
+          "semester": 2
+        },
+        {
+          "name": "复变函数论",
+          "weeks": "1-16周",
+          "teachers": ["任金波", "钟春平"],
+          "rooms": ["海韵教学楼207", "海韵教学楼104"],
+          "time_slots": [
+            {"weekday": "星期二", "period": "第五节"},
+            {"weekday": "星期五", "period": "第五节"}
+          ],
+          "grade": "2023",
+          "semester": 2,
+          "type": "拔尖强基"
+        },
+        {
+          "name": "大学英语",
+          "weeks": "",
+          "teachers": [],
+          "rooms": [],
+          "time_slots": [
+            {"weekday": "星期四", "period": "第五节"}
+          ],
+          "grade": "2023",
+          "semester": 2
+        },
+        {
+          "name": "形势与政策（4）",
+          "weeks": "9-16周，单",
+          "teachers": ["方晨亮", "周达", "谢文豪"],
+          "rooms": ["海韵教学楼201"],
+          "time_slots": [
+            {"weekday": "星期一", "period": "第七节"}
+          ],
+          "grade": "2023",
+          "semester": 2
+        },
+        {
+          "name": "\"四史\"专题研究",
+          "weeks": "2-16周，双",
+          "teachers": ["杨玲"],
+          "rooms": ["海韵教学楼104"],
+          "time_slots": [
+            {"weekday": "星期二", "period": "第七节"}
+          ],
+          "grade": "2023",
+          "semester": 2
+        }
+      ],
+      "3": [
+        {
+          "name": "并行程序设计",
+          "weeks": "小学期",
+          "teachers": [],
+          "rooms": [],
+          "time_slots": [],
+          "grade": "2023",
+          "semester": 3,
+          "type": "小学期选修",
+          "credits": 1,
+          "hours": 20,
+          "description": "大二小学期课程 - 短学期任意选修课"
+        },
+        {
+          "name": "Python编程与数据分析",
+          "weeks": "小学期",
+          "teachers": [],
+          "rooms": [],
+          "time_slots": [],
+          "grade": "2023",
+          "semester": 3,
+          "type": "小学期选修",
+          "credits": 1,
+          "hours": 20,
+          "description": "大二小学期课程 - 短学期任意选修课、创新创业课程、跨学科课程"
+        },
+        {
+          "name": "解析组合学",
+          "weeks": "小学期",
+          "teachers": [],
+          "rooms": [],
+          "time_slots": [],
+          "grade": "2023",
+          "semester": 3,
+          "type": "小学期选修",
+          "credits": 2,
+          "hours": 30,
+          "description": "大二小学期课程 - 短学期任意选修课"
+        },
+        {
+          "name": "对称图论",
+          "weeks": "小学期",
+          "teachers": [],
+          "rooms": [],
+          "time_slots": [],
+          "grade": "2023",
+          "semester": 3,
+          "type": "小学期选修",
+          "credits": 2,
+          "hours": 30,
+          "description": "大二小学期课程 - 短学期任意选修课"
+        },
+        {
+          "name": "贝叶斯统计",
+          "weeks": "小学期",
+          "teachers": [],
+          "rooms": [],
+          "time_slots": [],
+          "grade": "2023",
+          "semester": 3,
+          "type": "小学期选修",
+          "credits": 1,
+          "hours": 20,
+          "description": "大二/大三小学期课程 - 短学期任意选修课"
+        },
+        {
+          "name": "模论",
+          "weeks": "小学期",
+          "teachers": [],
+          "rooms": [],
+          "time_slots": [],
+          "grade": "2023",
+          "semester": 3,
+          "type": "小学期选修",
+          "credits": 1,
+          "hours": 20,
+          "description": "大二/大三小学期课程 - 短学期任意选修课"
+        },
+        {
+          "name": "博弈论",
+          "weeks": "小学期",
+          "teachers": [],
+          "rooms": [],
+          "time_slots": [],
+          "grade": "2023",
+          "semester": 3,
+          "type": "小学期选修",
+          "credits": 1,
+          "hours": 20,
+          "description": "大二/大三小学期课程 - 短学期任意选修课"
+        },
+        {
+          "name": "统计与机器学习应用实践",
+          "weeks": "小学期",
+          "teachers": [],
+          "rooms": [],
+          "time_slots": [],
+          "grade": "2023",
+          "semester": 3,
+          "type": "小学期选修",
+          "credits": 1,
+          "hours": 20,
+          "description": "大二/大三小学期课程 - 短学期任意选修课，创新课程"
+        },
+        {
+          "name": "统计建模应用实务（R语言）",
+          "weeks": "小学期",
+          "teachers": [],
+          "rooms": [],
+          "time_slots": [],
+          "grade": "2023",
+          "semester": 3,
+          "type": "小学期选修",
+          "credits": 1,
+          "hours": 20,
+          "description": "大二/大三小学期课程 - 短学期任意选修课"
+        }
+      ]
+    },
+    "2022": {
+      "1": {
+        "数学方向": [
+          {
+            "name": "概率论",
+            "weeks": "1-17周",
+            "teachers": ["周达"],
+            "rooms": ["海韵教学楼204"],
+            "time_slots": [
+              {"weekday": "星期一", "period": "第一节"},
+              {"weekday": "星期三", "period": "第五节"}
+            ],
+            "grade": "2022",
+            "semester": 1,
+            "direction": "数学"
+          },
+          {
+            "name": "实变函数",
+            "weeks": "1-17周",
+            "teachers": ["杨东勇", "吴伟胜"],
+            "rooms": ["海韵教学楼101", "海韵教学楼102"],
+            "time_slots": [
+              {"weekday": "星期二", "period": "第一节"},
+              {"weekday": "星期四", "period": "第一节"}
+            ],
+            "grade": "2022",
+            "semester": 1,
+            "direction": "数学"
+          },
+          {
+            "name": "计算方法",
+            "weeks": "1-17周",
+            "teachers": ["容志建"],
+            "rooms": ["海韵教学楼102", "钟铭选楼（嘉庚五）401", "钟铭选楼（嘉庚五）402"],
+            "time_slots": [
+              {"weekday": "星期三", "period": "第一节"},
+              {"weekday": "星期一", "period": "第五节"},
+              {"weekday": "星期三", "period": "第七节", "note": "单周"}
+            ],
+            "grade": "2022",
+            "semester": 1,
+            "direction": "数学"
+          },
+          {
+            "name": "半单李代数及其表示",
+            "weeks": "1-17周",
+            "teachers": ["王清"],
+            "rooms": ["海韵教学楼306"],
+            "time_slots": [
+              {"weekday": "星期五", "period": "第一节"}
+            ],
+            "grade": "2022",
+            "semester": 1,
+            "direction": "数学"
+          },
+          {
+            "name": "数值代数",
+            "weeks": "1-17周",
+            "teachers": ["杜魁"],
+            "rooms": ["海韵教学楼304", "钟铭选楼（嘉庚五）401", "钟铭选楼（嘉庚五）402"],
+            "time_slots": [
+              {"weekday": "星期一", "period": "第三节"},
+              {"weekday": "星期三", "period": "第三节"},
+              {"weekday": "星期三", "period": "第七节", "note": "2-16周双"}
+            ],
+            "grade": "2022",
+            "semester": 1,
+            "direction": "数学"
+          },
+          {
+            "name": "图论",
+            "weeks": "1-17周",
+            "teachers": ["金贤安"],
+            "rooms": ["海韵教学楼101"],
+            "time_slots": [
+              {"weekday": "星期二", "period": "第三节"},
+              {"weekday": "星期四", "period": "第三节"}
+            ],
+            "grade": "2022",
+            "semester": 1,
+            "direction": "数学"
+          },
+          {
+            "name": "纽结论初步",
+            "weeks": "1-17周",
+            "teachers": ["金贤安", "杨璟玲"],
+            "rooms": ["海韵教学楼102"],
+            "time_slots": [
+              {"weekday": "星期五", "period": "第三节"}
+            ],
+            "grade": "2022",
+            "semester": 1,
+            "direction": "数学"
+          },
+          {
+            "name": "拓扑学",
+            "weeks": "1-17周",
+            "teachers": ["刘文飞"],
+            "rooms": ["海韵教学楼406"],
+            "time_slots": [
+              {"weekday": "星期二", "period": "第五节"},
+              {"weekday": "星期四", "period": "第五节"}
+            ],
+            "grade": "2022",
+            "semester": 1,
+            "direction": "数学"
+          },
+          {
+            "name": "算法与数据结构",
+            "weeks": "1-17周",
+            "teachers": ["陈锦秀"],
+            "rooms": ["海韵教学楼204", "钟铭选楼（嘉庚五）401", "钟铭选楼（嘉庚五）402"],
+            "time_slots": [
+              {"weekday": "星期二", "period": "第五节"},
+              {"weekday": "星期四", "period": "第五节", "note": "单周"},
+              {"weekday": "星期四", "period": "第五节", "note": "2-16周双，上机"}
+            ],
+            "grade": "2022",
+            "semester": 1,
+            "direction": "数学"
+          },
+          {
+            "name": "计算机图形学",
+            "weeks": "1-17周",
+            "teachers": ["曹娟"],
+            "rooms": ["海韵教学楼102", "钟铭选楼（嘉庚五）401"],
+            "time_slots": [
+              {"weekday": "星期五", "period": "第五节"},
+              {"weekday": "星期四", "period": "第七节"}
+            ],
+            "grade": "2022",
+            "semester": 1,
+            "direction": "数学"
+          },
+          {
+            "name": "形势与政策（5）",
+            "weeks": "1-8周，单",
+            "teachers": ["方晨亮", "丁昌利", "许温洁", "华盈鑫"],
+            "rooms": ["海韵教学楼101"],
+            "time_slots": [
+              {"weekday": "星期一", "period": "第七节"}
+            ],
+            "grade": "2022",
+            "semester": 1,
+            "direction": "数学"
+          },
+          {
+            "name": "马克思主义基本原理",
+            "weeks": "",
+            "teachers": ["邹文英", "杨青梅"],
+            "rooms": ["海韵教学楼101", "海韵教学楼104"],
+            "time_slots": [
+              {"weekday": "星期二", "period": "第七节"}
+            ],
+            "grade": "2022",
+            "semester": 1,
+            "direction": "数学"
+          },
+          {
+            "name": "多复变函数论",
+            "weeks": "1-17周",
+            "teachers": ["钟春平"],
+            "rooms": ["海韵教学楼102"],
+            "time_slots": [
+              {"weekday": "星期四", "period": "第九节"}
+            ],
+            "grade": "2022",
+            "semester": 1,
+            "direction": "数学"
+          }
+        ],
+        "统计学方向": [
+          {
+            "name": "精算数学",
+            "weeks": "1-17周",
+            "teachers": ["陈新香"],
+            "rooms": ["海韵教学楼302"],
+            "time_slots": [
+              {"weekday": "星期一", "period": "第一节"},
+              {"weekday": "星期三", "period": "第三节"}
+            ],
+            "grade": "2022",
+            "semester": 1,
+            "direction": "统计学"
+          },
+          {
+            "name": "实变函数",
+            "weeks": "1-17周",
+            "teachers": ["杨东勇", "吴伟胜"],
+            "rooms": ["海韵教学楼101", "海韵教学楼102"],
+            "time_slots": [
+              {"weekday": "星期二", "period": "第一节"},
+              {"weekday": "星期四", "period": "第一节"}
+            ],
+            "grade": "2022",
+            "semester": 1,
+            "direction": "统计学"
+          },
+          {
+            "name": "计算方法",
+            "weeks": "1-17周",
+            "teachers": ["容志建"],
+            "rooms": ["海韵教学楼102", "钟铭选楼（嘉庚五）401", "钟铭选楼（嘉庚五）402"],
+            "time_slots": [
+              {"weekday": "星期三", "period": "第一节"},
+              {"weekday": "星期一", "period": "第五节"},
+              {"weekday": "星期三", "period": "第七节", "note": "单周"}
+            ],
+            "grade": "2022",
+            "semester": 1,
+            "direction": "统计学"
+          },
+          {
+            "name": "半单李代数及其表示",
+            "weeks": "1-17周",
+            "teachers": ["王清"],
+            "rooms": ["海韵教学楼306"],
+            "time_slots": [
+              {"weekday": "星期五", "period": "第一节"}
+            ],
+            "grade": "2022",
+            "semester": 1,
+            "direction": "统计学"
+          },
+          {
+            "name": "统计计算",
+            "weeks": "1-17周",
+            "teachers": ["梁薇"],
+            "rooms": ["海韵教学楼401"],
+            "time_slots": [
+              {"weekday": "星期一", "period": "第三节"},
+              {"weekday": "星期三", "period": "第五节"}
+            ],
+            "grade": "2022",
+            "semester": 1,
+            "direction": "统计学"
+          },
+          {
+            "name": "应用线性模型",
+            "weeks": "1-17周",
+            "teachers": ["胡杰"],
+            "rooms": ["海韵教学楼407"],
+            "time_slots": [
+              {"weekday": "星期二", "period": "第三节"},
+              {"weekday": "星期四", "period": "第三节"}
+            ],
+            "grade": "2022",
+            "semester": 1,
+            "direction": "统计学"
+          },
+          {
+            "name": "抽样调查",
+            "weeks": "1-17周",
+            "teachers": ["薛学梅"],
+            "rooms": ["海韵教学楼401"],
+            "time_slots": [
+              {"weekday": "星期五", "period": "第三节"},
+              {"weekday": "星期二", "period": "第五节"}
+            ],
+            "grade": "2022",
+            "semester": 1,
+            "direction": "统计学"
+          },
+          {
+            "name": "形势与政策（5）",
+            "weeks": "1-8周，单",
+            "teachers": ["方晨亮", "丁昌利", "许温洁", "华盈鑫"],
+            "rooms": ["海韵教学楼101"],
+            "time_slots": [
+              {"weekday": "星期一", "period": "第七节"}
+            ],
+            "grade": "2022",
+            "semester": 1,
+            "direction": "统计学"
+          },
+          {
+            "name": "马克思主义基本原理",
+            "weeks": "",
+            "teachers": ["邹文英", "杨青梅"],
+            "rooms": ["海韵教学楼101", "海韵教学楼104"],
+            "time_slots": [
+              {"weekday": "星期二", "period": "第七节"}
+            ],
+            "grade": "2022",
+            "semester": 1,
+            "direction": "统计学"
+          },
+          {
+            "name": "多复变函数论",
+            "weeks": "1-17周",
+            "teachers": ["钟春平"],
+            "rooms": ["海韵教学楼102"],
+            "time_slots": [
+              {"weekday": "星期四", "period": "第九节"}
+            ],
+            "grade": "2022",
+            "semester": 1,
+            "direction": "统计学"
+          }
+        ]
+      },
+      "2": {
+        "数学方向": [
+          {
+            "name": "数理统计",
+            "weeks": "1-16周",
+            "teachers": ["王海斌"],
+            "rooms": ["海韵教学楼104"],
+            "time_slots": [
+              {"weekday": "星期一", "period": "第一节"},
+              {"weekday": "星期四", "period": "第一节"}
+            ],
+            "grade": "2022",
+            "semester": 2,
+            "direction": "数学"
+          },
+          {
+            "name": "密码学导引",
+            "weeks": "1-16周",
+            "teachers": ["祝辉林"],
+            "rooms": ["海韵教学楼204"],
+            "time_slots": [
+              {"weekday": "星期二", "period": "第一节"},
+              {"weekday": "星期四", "period": "第一节"}
+            ],
+            "grade": "2022",
+            "semester": 2,
+            "direction": "数学"
+          },
+          {
+            "name": "微分流形基础",
+            "weeks": "1-16周",
+            "teachers": ["王金花"],
+            "rooms": ["海韵教学楼101"],
+            "time_slots": [
+              {"weekday": "星期三", "period": "第一节"},
+              {"weekday": "星期一", "period": "第五节"}
+            ],
+            "grade": "2022",
+            "semester": 2,
+            "direction": "数学",
+            "type": "拔尖强基"
+          },
+          {
+            "name": "傅里叶分析及其应用",
+            "weeks": "1-16周",
+            "teachers": ["黄宏伟", "伍火熊"],
+            "rooms": ["海韵教学楼307"],
+            "time_slots": [
+              {"weekday": "星期五", "period": "第一节"},
+              {"weekday": "星期四", "period": "第三节"}
+            ],
+            "grade": "2022",
+            "semester": 2,
+            "direction": "数学"
+          },
+          {
+            "name": "微分方程数值解法",
+            "weeks": "1-16周",
+            "teachers": ["许传炬"],
+            "rooms": ["海韵教学楼301", "海韵实验楼202"],
+            "time_slots": [
+              {"weekday": "星期一", "period": "第三节"},
+              {"weekday": "星期三", "period": "第三节"},
+              {"weekday": "星期三", "period": "第七节", "note": "2-16双周，上机"}
+            ],
+            "grade": "2022",
+            "semester": 2,
+            "direction": "数学"
+          },
+          {
+            "name": "数值逼近",
+            "weeks": "1-16周",
+            "teachers": ["陈黄鑫", "邱建贤"],
+            "rooms": ["海韵教学楼204", "海韵实验楼202"],
+            "time_slots": [
+              {"weekday": "星期二", "period": "第三节"},
+              {"weekday": "星期四", "period": "第五节"},
+              {"weekday": "星期四", "period": "第七节", "note": "2-16双周，上机"}
+            ],
+            "grade": "2022",
+            "semester": 2,
+            "direction": "数学"
+          },
+          {
+            "name": "数据分析与矩阵计算",
+            "weeks": "1-16周",
+            "teachers": ["杜魁"],
+            "rooms": ["海韵教学楼101"],
+            "time_slots": [
+              {"weekday": "星期四", "period": "第三节"}
+            ],
+            "grade": "2022",
+            "semester": 2,
+            "direction": "数学"
+          },
+          {
+            "name": "泛函分析",
+            "weeks": "1-16周",
+            "teachers": ["宋翀", "贺飞", "程庆进"],
+            "rooms": ["海韵教学楼306", "海韵教学楼302"],
+            "time_slots": [
+              {"weekday": "星期四", "period": "第三节"},
+              {"weekday": "星期三", "period": "第五节"}
+            ],
+            "grade": "2022",
+            "semester": 2,
+            "direction": "数学",
+            "type": "拔尖强基"
+          },
+          {
+            "name": "运筹与优化",
+            "weeks": "1-16周",
+            "teachers": ["刘龙城"],
+            "rooms": ["海韵教学楼307"],
+            "time_slots": [
+              {"weekday": "星期二", "period": "第五节"},
+              {"weekday": "星期五", "period": "第五节"}
+            ],
+            "grade": "2022",
+            "semester": 2,
+            "direction": "数学"
+          },
+          {
+            "name": "计算机辅助几何设计",
+            "weeks": "1-16周",
+            "teachers": ["曹娟"],
+            "rooms": ["海韵教学楼202"],
+            "time_slots": [
+              {"weekday": "星期二", "period": "第五节"},
+              {"weekday": "星期五", "period": "第五节"}
+            ],
+            "grade": "2022",
+            "semester": 2,
+            "direction": "数学"
+          },
+          {
+            "name": "数值最优化",
+            "weeks": "1-16周",
+            "teachers": ["黄文"],
+            "rooms": ["海韵教学楼207", "海韵实验楼202"],
+            "time_slots": [
+              {"weekday": "星期二", "period": "第七节"},
+              {"weekday": "星期三", "period": "第九节"},
+              {"weekday": "星期四", "period": "第七节", "note": "1-15周，上机"}
+            ],
+            "grade": "2022",
+            "semester": 2,
+            "direction": "数学"
+          },
+          {
+            "name": "形势与政策（6）",
+            "weeks": "1-7周，单",
+            "teachers": ["方晨亮", "周达", "谢文豪"],
+            "rooms": ["海韵教学楼201"],
+            "time_slots": [
+              {"weekday": "星期一", "period": "第七节"}
+            ],
+            "grade": "2022",
+            "semester": 2,
+            "direction": "数学"
+          },
+          {
+            "name": "代数几何",
+            "weeks": "1-16周",
+            "teachers": ["刘文飞"],
+            "rooms": ["海韵教学楼101"],
+            "time_slots": [
+              {"weekday": "星期一", "period": "第九节"},
+              {"weekday": "星期三", "period": "第九节"}
+            ],
+            "grade": "2022",
+            "semester": 2,
+            "direction": "数学"
+          },
+          {
+            "name": "计算数学讨论班",
+            "weeks": "1-16周",
+            "teachers": ["陈竑焘", "陈黄鑫", "黄文", "曹娟", "杜魁"],
+            "rooms": ["海韵教学楼102"],
+            "time_slots": [
+              {"weekday": "星期二", "period": "第九节"}
+            ],
+            "grade": "2022",
+            "semester": 2,
+            "direction": "数学",
+            "type": "拔尖强基"
+          },
+          {
+            "name": "数学讨论班",
+            "weeks": "1-16周",
+            "teachers": ["阮诗佺", "贺飞", "连政星"],
+            "rooms": ["海韵教学楼102"],
+            "time_slots": [
+              {"weekday": "星期四", "period": "第九节"}
+            ],
+            "grade": "2022",
+            "semester": 2,
+            "direction": "数学",
+            "type": "拔尖强基"
+          }
+        ],
+        "统计学方向": [
+          {
+            "name": "多元统计分析",
+            "weeks": "1-16周",
+            "teachers": ["方明"],
+            "rooms": ["海韵教学楼201"],
+            "time_slots": [
+              {"weekday": "星期一", "period": "第三节"},
+              {"weekday": "星期三", "period": "第五节"}
+            ],
+            "grade": "2022",
+            "semester": 2,
+            "direction": "统计学"
+          },
+          {
+            "name": "时间序列分析",
+            "weeks": "1-16周",
+            "teachers": ["胡杰"],
+            "rooms": ["海韵教学楼306"],
+            "time_slots": [
+              {"weekday": "星期二", "period": "第三节"},
+              {"weekday": "星期四", "period": "第三节"}
+            ],
+            "grade": "2022",
+            "semester": 2,
+            "direction": "统计学"
+          },
+          {
+            "name": "寿险精算数学实务",
+            "weeks": "1-16周",
+            "teachers": ["陈新香"],
+            "rooms": ["海韵教学楼302"],
+            "time_slots": [
+              {"weekday": "星期四", "period": "第五节"}
+            ],
+            "grade": "2022",
+            "semester": 2,
+            "direction": "统计学"
+          },
+          {
+            "name": "形势与政策（6）",
+            "weeks": "1-7周，单",
+            "teachers": ["方晨亮", "周达", "谢文豪"],
+            "rooms": ["海韵教学楼201"],
+            "time_slots": [
+              {"weekday": "星期一", "period": "第七节"}
+            ],
+            "grade": "2022",
+            "semester": 2,
+            "direction": "统计学"
+          }
+        ]
+      }
+    },
+    "2021": {
+      "1": [
+        {
+          "name": "非参数统计",
+          "weeks": "1-17周",
+          "teachers": ["梁薇"],
+          "rooms": ["海韵教学楼406"],
+          "time_slots": [
+            {"weekday": "星期三", "period": "第三节"},
+            {"weekday": "星期一", "period": "第五节"}
+          ],
+          "grade": "2021",
+          "semester": 1
+        },
+        {
+          "name": "形势与政策（7）",
+          "weeks": "1-8周，单",
+          "teachers": ["方晨亮", "丁昌利", "许温洁", "华盈鑫"],
+          "rooms": ["海韵教学楼102"],
+          "time_slots": [
+            {"weekday": "星期一", "period": "第七节"}
+          ],
+          "grade": "2021",
+          "semester": 1
+        }
+      ],
+      "2": [
+        {
+          "name": "数据分析与矩阵计算",
+          "weeks": "1-16周",
+          "teachers": ["杜魁"],
+          "rooms": ["海韵教学楼101"],
+          "time_slots": [
+            {"weekday": "星期四", "period": "第三节"}
+          ],
+          "grade": "2021",
+          "semester": 2
+        },
+        {
+          "name": "形势与政策（8）",
+          "weeks": "1-7周，单",
+          "teachers": ["方晨亮", "周达", "谢文豪"],
+          "rooms": ["海韵教学楼204"],
+          "time_slots": [
+            {"weekday": "星期一", "period": "第七节"}
+          ],
+          "grade": "2021",
+          "semester": 2
+        },
+        {
+          "name": "数值最优化",
+          "weeks": "1-16周",
+          "teachers": ["黄文"],
+          "rooms": ["海韵教学楼207", "海韵实验楼202"],
+          "time_slots": [
+            {"weekday": "星期二", "period": "第七节"},
+            {"weekday": "星期三", "period": "第九节"},
+            {"weekday": "星期四", "period": "第七节", "note": "1-15周，上机"}
+          ],
+          "grade": "2021",
+          "semester": 2
+        },
+        {
+          "name": "代数几何",
+          "weeks": "1-16周",
+          "teachers": ["刘文飞"],
+          "rooms": ["海韵教学楼101"],
+          "time_slots": [
+            {"weekday": "星期一", "period": "第九节"},
+            {"weekday": "星期三", "period": "第九节"}
+          ],
+          "grade": "2021",
+          "semester": 2
+        }
+      ],
+      "3": [
+        {
+          "name": "计算方法",
+          "weeks": "小学期",
+          "teachers": [],
+          "rooms": [],
+          "time_slots": [],
+          "grade": "2021",
+          "semester": 3,
+          "type": "小学期选修",
+          "credits": 1,
+          "hours": 20,
+          "description": "大四小学期课程"
+        },
+        {
+          "name": "图论",
+          "weeks": "小学期",
+          "teachers": [],
+          "rooms": [],
+          "time_slots": [],
+          "grade": "2021",
+          "semester": 3,
+          "type": "小学期选修",
+          "credits": 1,
+          "hours": 20,
+          "description": "大四小学期课程"
+        },
+        {
+          "name": "傅里叶分析及其应用",
+          "weeks": "小学期",
+          "teachers": [],
+          "rooms": [],
+          "time_slots": [],
+          "grade": "2021",
+          "semester": 3,
+          "type": "小学期选修",
+          "credits": 1,
+          "hours": 20,
+          "description": "大四小学期课程"
+        },
+        {
+          "name": "拓扑学",
+          "weeks": "小学期",
+          "teachers": [],
+          "rooms": [],
+          "time_slots": [],
+          "grade": "2021",
+          "semester": 3,
+          "type": "小学期选修",
+          "credits": 1,
+          "hours": 20,
+          "description": "大四小学期课程"
+        },
+        {
+          "name": "常微分方程",
+          "weeks": "小学期",
+          "teachers": [],
+          "rooms": [],
+          "time_slots": [],
+          "grade": "2021",
+          "semester": 3,
+          "type": "小学期选修",
+          "credits": 1,
+          "hours": 20,
+          "description": "大四小学期课程"
+        },
+        {
+          "name": "概率论",
+          "weeks": "小学期",
+          "teachers": [],
+          "rooms": [],
+          "time_slots": [],
+          "grade": "2021",
+          "semester": 3,
+          "type": "小学期选修",
+          "credits": 1,
+          "hours": 20,
+          "description": "大四小学期课程"
+        },
+        {
+          "name": "复变函数论",
+          "weeks": "小学期",
+          "teachers": [],
+          "rooms": [],
+          "time_slots": [],
+          "grade": "2021",
+          "semester": 3,
+          "type": "小学期选修",
+          "credits": 1,
+          "hours": 20,
+          "description": "大四小学期课程"
+        },
+        {
+          "name": "实变函数",
+          "weeks": "小学期",
+          "teachers": [],
+          "rooms": [],
+          "time_slots": [],
+          "grade": "2021",
+          "semester": 3,
+          "type": "小学期选修",
+          "credits": 1,
+          "hours": 20,
+          "description": "大四小学期课程"
+        },
+        {
+          "name": "抽象代数",
+          "weeks": "小学期",
+          "teachers": [],
+          "rooms": [],
+          "time_slots": [],
+          "grade": "2021",
+          "semester": 3,
+          "type": "小学期选修",
+          "credits": 1,
+          "hours": 20,
+          "description": "大四小学期课程"
+        },
+        {
+          "name": "偏微分方程",
+          "weeks": "小学期",
+          "teachers": [],
+          "rooms": [],
+          "time_slots": [],
+          "grade": "2021",
+          "semester": 3,
+          "type": "小学期选修",
+          "credits": 1,
+          "hours": 20,
+          "description": "大四小学期课程"
+        }
+      ]
+    }
+  },
+  "statistics": {
+    "total_courses": 136,
+    "grades": ["2024", "2023", "2022", "2021"],
+    "semesters": [1, 2, 3],
+    "directions": ["数学", "统计学"],
+    "short_term_summary": {
+      "2024": 5,
+      "2023": 9,
+      "2022": 6,
+      "2021": 10
+    }
+  }
+}

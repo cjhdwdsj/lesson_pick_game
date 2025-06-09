@@ -1,0 +1,678 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>数学学院课程探索工具</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📚</text></svg>">
+    <meta name="description" content="厦门大学数学科学学院课程探索工具，帮助学生智能选课和规划学习路径">
+    <meta name="keywords" content="厦门大学,数学学院,课程选择,学习规划,选课系统">
+</head>
+<body>    <div id="app">
+        <!-- 加载状态 -->
+        <div class="min-h-screen flex items-center justify-center">
+            <div class="text-center">
+                <div class="loading-spinner mx-auto mb-4"></div>
+                <p class="text-white text-lg">正在加载课程数据...</p>
+            </div>
+        </div>
+    </div>
+    
+    <!-- 课程详情模态框 -->
+    <div id="courseDetailModal" class="modal-overlay hidden">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 id="modalTitle" class="text-xl font-bold text-gray-900"></h3>
+                <button data-action="closeModal" class="modal-close">×</button>
+            </div>
+            <div id="modalBody" class="modal-body">
+                <!-- 课程详情内容 -->
+            </div>
+        </div>
+    </div>
+    
+    <script src="script.js"></script>
+</body>
+</html>
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .skill-progress {
+            background: linear-gradient(90deg, #4f46e5 0%, #7c3aed 100%);
+        }
+        
+        .course-type-math {
+            background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
+        }
+        
+        .course-type-stats {
+            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+        }
+        
+        .course-type-required {
+            background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
+        }
+        
+        .course-type-elective {
+            background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+        }
+        
+        .course-type-summer {
+            background: linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%);
+        }
+        
+        .filter-btn {
+            transition: all 0.3s ease;
+        }
+        
+        .filter-btn.active {
+            background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%);
+            color: white;
+            transform: scale(1.05);
+        }
+        
+        .animate-fade-in {
+            animation: fadeIn 0.5s ease-in;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body>
+    <div id="app"></div>
+    
+    <script type="module">
+        // 课程数据
+        let courseData = {};
+        
+        // 加载课程数据
+        async function loadCourseData() {
+            try {
+                const response = await fetch('./deduplicated_schedule_data.json');
+                courseData = await response.json();
+                console.log('Course data loaded:', courseData);
+                renderApp();
+            } catch (error) {
+                console.error('Error loading course data:', error);
+                renderError();
+            }
+        }
+        
+        // 应用状态
+        let appState = {
+            selectedGrade: '2024',
+            selectedSemester: 'all',
+            selectedDirection: 'all',
+            favorites: JSON.parse(localStorage.getItem('courseFavorites') || '[]'),
+            searchQuery: '',
+            selectedCourses: JSON.parse(localStorage.getItem('selectedCourses') || '[]')
+        };
+        
+        // 保存收藏到本地存储
+        function saveFavorites() {
+            localStorage.setItem('courseFavorites', JSON.stringify(appState.favorites));
+        }
+        
+        // 保存选课到本地存储
+        function saveSelectedCourses() {
+            localStorage.setItem('selectedCourses', JSON.stringify(appState.selectedCourses));
+        }
+        
+        // 切换收藏状态
+        function toggleFavorite(courseName) {
+            const index = appState.favorites.indexOf(courseName);
+            if (index > -1) {
+                appState.favorites.splice(index, 1);
+            } else {
+                appState.favorites.push(courseName);
+            }
+            saveFavorites();
+            renderApp();
+        }
+        
+        // 切换选课状态
+        function toggleCourseSelection(course) {
+            const index = appState.selectedCourses.findIndex(c => c.name === course.name);
+            if (index > -1) {
+                appState.selectedCourses.splice(index, 1);
+            } else {
+                appState.selectedCourses.push(course);
+            }
+            saveSelectedCourses();
+            renderApp();
+        }
+        
+        // 检测时间冲突
+        function detectTimeConflicts(courses) {
+            const conflicts = [];
+            
+            for (let i = 0; i < courses.length; i++) {
+                for (let j = i + 1; j < courses.length; j++) {
+                    const course1 = courses[i];
+                    const course2 = courses[j];
+                    
+                    if (!course1.time_slots || !course2.time_slots) continue;
+                    
+                    const hasConflict = course1.time_slots.some(slot1 =>
+                        course2.time_slots.some(slot2 =>
+                            slot1.weekday === slot2.weekday && slot1.period === slot2.period
+                        )
+                    );
+                    
+                    if (hasConflict) {
+                        const conflictTime = course1.time_slots.find(slot1 =>
+                            course2.time_slots.some(slot2 =>
+                                slot1.weekday === slot2.weekday && slot1.period === slot2.period
+                            )
+                        );
+                        
+                        conflicts.push({
+                            course1: course1.name,
+                            course2: course2.name,
+                            conflictTime: conflictTime
+                        });
+                    }
+                }
+            }
+            
+            return conflicts;
+        }
+        
+        // 获取课程类型样式
+        function getCourseTypeStyle(course) {
+            if (course.type?.includes('强基') || course.type?.includes('拔尖')) {
+                return { className: 'course-type-required', label: '强基班', icon: 'star' };
+            }
+            if (course.type === '小学期选修') {
+                return { className: 'course-type-summer', label: '小学期', icon: 'sun' };
+            }
+            if (course.direction === '统计学') {
+                return { className: 'course-type-stats', label: '统计学', icon: 'bar-chart' };
+            }
+            if (course.direction === '数学') {
+                return { className: 'course-type-math', label: '数学', icon: 'calculator' };
+            }
+            
+            // 根据课程名称判断
+            const requiredCourses = ['数学分析', '高等代数', '概率论', '数理统计', '大学英语', '大学物理'];
+            const isRequired = requiredCourses.some(req => course.name.includes(req));
+            
+            if (isRequired) {
+                return { className: 'course-type-required', label: '必修', icon: 'book-open' };
+            } else {
+                return { className: 'course-type-elective', label: '选修', icon: 'book' };
+            }
+        }
+        
+        // 获取所有课程
+        function getAllCourses() {
+            let allCourses = [];
+            
+            if (!courseData.schedule_data) return allCourses;
+            
+            Object.keys(courseData.schedule_data).forEach(grade => {
+                Object.keys(courseData.schedule_data[grade]).forEach(semester => {
+                    const semesterData = courseData.schedule_data[grade][semester];
+                    
+                    if (Array.isArray(semesterData)) {
+                        allCourses.push(...semesterData);
+                    } else if (typeof semesterData === 'object') {
+                        Object.keys(semesterData).forEach(direction => {
+                            if (Array.isArray(semesterData[direction])) {
+                                allCourses.push(...semesterData[direction]);
+                            }
+                        });
+                    }
+                });
+            });
+            
+            return allCourses;
+        }
+        
+        // 过滤课程
+        function getFilteredCourses() {
+            let courses = getAllCourses();
+            
+            // 按年级筛选
+            if (appState.selectedGrade !== 'all') {
+                courses = courses.filter(course => course.grade === appState.selectedGrade);
+            }
+            
+            // 按学期筛选
+            if (appState.selectedSemester !== 'all') {
+                courses = courses.filter(course => course.semester.toString() === appState.selectedSemester);
+            }
+            
+            // 按方向筛选
+            if (appState.selectedDirection !== 'all') {
+                courses = courses.filter(course => course.direction === appState.selectedDirection);
+            }
+            
+            // 搜索筛选
+            if (appState.searchQuery) {
+                const query = appState.searchQuery.toLowerCase();
+                courses = courses.filter(course => 
+                    course.name.toLowerCase().includes(query) ||
+                    (course.teachers && course.teachers.some(teacher => teacher.toLowerCase().includes(query)))
+                );
+            }
+            
+            return courses;
+        }
+        
+        // 创建图标元素
+        function createIcon(iconName, className = '') {
+            const iconElement = document.createElement('i');
+            iconElement.setAttribute('data-lucide', iconName);
+            iconElement.className = className;
+            return iconElement;
+        }
+        
+        // 渲染课程卡片
+        function renderCourseCard(course) {
+            const typeStyle = getCourseTypeStyle(course);
+            const isFavorite = appState.favorites.includes(course.name);
+            const isSelected = appState.selectedCourses.some(c => c.name === course.name);
+            
+            return `
+                <div class="bg-white rounded-xl shadow-lg p-6 card-hover animate-fade-in">
+                    <div class="flex justify-between items-start mb-4">
+                        <div class="flex-1">
+                            <div class="flex items-center gap-2 mb-2">
+                                <span class="${typeStyle.className} text-white px-3 py-1 rounded-full text-sm font-medium flex items-center gap-1">
+                                    <i data-lucide="${typeStyle.icon}" class="w-4 h-4"></i>
+                                    ${typeStyle.label}
+                                </span>
+                                ${course.credits ? `<span class="bg-gray-100 text-gray-700 px-2 py-1 rounded text-sm">${course.credits}学分</span>` : ''}
+                            </div>
+                            <h3 class="text-xl font-bold text-gray-800 mb-2">${course.name}</h3>
+                            <p class="text-gray-600 text-sm">${course.grade}级 第${course.semester}学期</p>
+                        </div>
+                        <div class="flex gap-2">
+                            <button onclick="toggleFavorite('${course.name}')" class="p-2 rounded-lg transition-colors ${isFavorite ? 'text-red-500 bg-red-50' : 'text-gray-400 hover:text-red-500 hover:bg-red-50'}">
+                                <i data-lucide="heart" class="w-5 h-5 ${isFavorite ? 'fill-current' : ''}"></i>
+                            </button>
+                            <button onclick="toggleCourseSelection(${JSON.stringify(course).replace(/"/g, '&quot;')})" class="p-2 rounded-lg transition-colors ${isSelected ? 'text-blue-500 bg-blue-50' : 'text-gray-400 hover:text-blue-500 hover:bg-blue-50'}">
+                                <i data-lucide="plus" class="w-5 h-5"></i>
+                            </button>
+                        </div>
+                    </div>
+                    
+                    ${course.weeks ? `
+                        <div class="mb-3">
+                            <div class="flex items-center gap-2 text-sm text-gray-600">
+                                <i data-lucide="calendar" class="w-4 h-4"></i>
+                                <span>${course.weeks}</span>
+                            </div>
+                        </div>
+                    ` : ''}
+                    
+                    ${course.teachers && course.teachers.length > 0 ? `
+                        <div class="mb-3">
+                            <div class="flex items-center gap-2 text-sm text-gray-600">
+                                <i data-lucide="user" class="w-4 h-4"></i>
+                                <span>${course.teachers.join(', ')}</span>
+                            </div>
+                        </div>
+                    ` : ''}
+                    
+                    ${course.rooms && course.rooms.length > 0 ? `
+                        <div class="mb-3">
+                            <div class="flex items-center gap-2 text-sm text-gray-600">
+                                <i data-lucide="map-pin" class="w-4 h-4"></i>
+                                <span>${course.rooms.join(', ')}</span>
+                            </div>
+                        </div>
+                    ` : ''}
+                    
+                    ${course.time_slots && course.time_slots.length > 0 ? `
+                        <div class="mb-4">
+                            <div class="flex items-start gap-2 text-sm text-gray-600">
+                                <i data-lucide="clock" class="w-4 h-4 mt-0.5"></i>
+                                <div class="flex flex-wrap gap-2">
+                                    ${course.time_slots.map(slot => `
+                                        <span class="bg-blue-50 text-blue-700 px-2 py-1 rounded text-xs">
+                                            ${slot.weekday} ${slot.period}
+                                            ${slot.note ? `(${slot.note})` : ''}
+                                        </span>
+                                    `).join('')}
+                                </div>
+                            </div>
+                        </div>
+                    ` : ''}
+                    
+                    ${course.description ? `
+                        <div class="text-sm text-gray-500 mt-3 p-3 bg-gray-50 rounded-lg">
+                            ${course.description}
+                        </div>
+                    ` : ''}
+                </div>
+            `;
+        }
+        
+        // 渲染统计面板
+        function renderStatsPanel() {
+            const allCourses = getAllCourses();
+            const filteredCourses = getFilteredCourses();
+            const selectedCredits = appState.selectedCourses.reduce((sum, course) => sum + (course.credits || 3), 0);
+            const conflicts = detectTimeConflicts(appState.selectedCourses);
+            
+            return `
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+                    <div class="bg-white rounded-xl shadow-lg p-6 text-center">
+                        <div class="inline-flex items-center justify-center w-12 h-12 bg-blue-100 rounded-lg mb-4">
+                            <i data-lucide="book-open" class="w-6 h-6 text-blue-600"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold text-gray-800">${filteredCourses.length}</h3>
+                        <p class="text-gray-600">当前课程</p>
+                    </div>
+                    
+                    <div class="bg-white rounded-xl shadow-lg p-6 text-center">
+                        <div class="inline-flex items-center justify-center w-12 h-12 bg-red-100 rounded-lg mb-4">
+                            <i data-lucide="heart" class="w-6 h-6 text-red-600"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold text-gray-800">${appState.favorites.length}</h3>
+                        <p class="text-gray-600">收藏课程</p>
+                    </div>
+                    
+                    <div class="bg-white rounded-xl shadow-lg p-6 text-center">
+                        <div class="inline-flex items-center justify-center w-12 h-12 bg-green-100 rounded-lg mb-4">
+                            <i data-lucide="plus-circle" class="w-6 h-6 text-green-600"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold text-gray-800">${appState.selectedCourses.length}</h3>
+                        <p class="text-gray-600">已选课程</p>
+                    </div>
+                    
+                    <div class="bg-white rounded-xl shadow-lg p-6 text-center">
+                        <div class="inline-flex items-center justify-center w-12 h-12 bg-purple-100 rounded-lg mb-4">
+                            <i data-lucide="award" class="w-6 h-6 text-purple-600"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold text-gray-800">${selectedCredits}</h3>
+                        <p class="text-gray-600">总学分</p>
+                    </div>
+                </div>
+                
+                ${conflicts.length > 0 ? `
+                    <div class="bg-red-50 border border-red-200 rounded-xl p-6 mb-8">
+                        <div class="flex items-center gap-2 mb-4">
+                            <i data-lucide="alert-triangle" class="w-5 h-5 text-red-600"></i>
+                            <h3 class="text-lg font-semibold text-red-800">时间冲突警告</h3>
+                        </div>
+                        <div class="space-y-2">
+                            ${conflicts.map(conflict => `
+                                <div class="text-sm text-red-700">
+                                    《${conflict.course1}》与《${conflict.course2}》在${conflict.conflictTime.weekday}${conflict.conflictTime.period}有冲突
+                                </div>
+                            `).join('')}
+                        </div>
+                    </div>
+                ` : ''}
+            `;
+        }
+        
+        // 渲染课程表视图
+        function renderScheduleView() {
+            const weekdays = ['星期一', '星期二', '星期三', '星期四', '星期五'];
+            const periods = ['第一节', '第二节', '第三节', '第四节', '第五节', '第六节', '第七节', '第八节', '第九节'];
+            
+            // 创建时间表网格
+            let scheduleGrid = {};
+            weekdays.forEach(day => {
+                scheduleGrid[day] = {};
+                periods.forEach(period => {
+                    scheduleGrid[day][period] = [];
+                });
+            });
+            
+            // 填充已选课程
+            appState.selectedCourses.forEach(course => {
+                if (course.time_slots) {
+                    course.time_slots.forEach(slot => {
+                        if (scheduleGrid[slot.weekday] && scheduleGrid[slot.weekday][slot.period]) {
+                            scheduleGrid[slot.weekday][slot.period].push(course);
+                        }
+                    });
+                }
+            });
+            
+            return `
+                <div class="bg-white rounded-xl shadow-lg p-6 mb-8">
+                    <h3 class="text-xl font-bold text-gray-800 mb-6 flex items-center gap-2">
+                        <i data-lucide="calendar" class="w-6 h-6"></i>
+                        我的课程表
+                    </h3>
+                    <div class="overflow-x-auto">
+                        <table class="w-full border-collapse">
+                            <thead>
+                                <tr>
+                                    <th class="border border-gray-200 p-3 bg-gray-50 text-center font-semibold">时间</th>
+                                    ${weekdays.map(day => `<th class="border border-gray-200 p-3 bg-gray-50 text-center font-semibold">${day}</th>`).join('')}
+                                </tr>
+                            </thead>
+                            <tbody>
+                                ${periods.map(period => `
+                                    <tr>
+                                        <td class="border border-gray-200 p-3 bg-gray-50 text-center font-medium">${period}</td>
+                                        ${weekdays.map(day => {
+                                            const courses = scheduleGrid[day][period];
+                                            return `
+                                                <td class="border border-gray-200 p-2 h-20 align-top">
+                                                    ${courses.map(course => {
+                                                        const typeStyle = getCourseTypeStyle(course);
+                                                        return `
+                                                            <div class="${typeStyle.className} text-white text-xs p-2 rounded mb-1 shadow-sm">
+                                                                <div class="font-medium truncate">${course.name}</div>
+                                                                ${course.rooms && course.rooms[0] ? `<div class="text-xs opacity-80 truncate">${course.rooms[0]}</div>` : ''}
+                                                            </div>
+                                                        `;
+                                                    }).join('')}
+                                                </td>
+                                            `;
+                                        }).join('')}
+                                    </tr>
+                                `).join('')}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            `;
+        }
+        
+        // 渲染学习建议
+        function renderRecommendations() {
+            const selectedCourseNames = appState.selectedCourses.map(c => c.name);
+            const allCourses = getAllCourses();
+            const available = allCourses.filter(c => !selectedCourseNames.includes(c.name));
+            
+            // 简单的推荐算法
+            const recommendations = available
+                .filter(course => course.grade === appState.selectedGrade)
+                .slice(0, 3);
+            
+            if (recommendations.length === 0) return '';
+            
+            return `
+                <div class="bg-gradient-to-r from-blue-50 to-indigo-50 rounded-xl p-6 mb-8">
+                    <h3 class="text-xl font-bold text-gray-800 mb-4 flex items-center gap-2">
+                        <i data-lucide="lightbulb" class="w-6 h-6"></i>
+                        推荐课程
+                    </h3>
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                        ${recommendations.map(course => {
+                            const typeStyle = getCourseTypeStyle(course);
+                            return `
+                                <div class="bg-white rounded-lg p-4 shadow-sm">
+                                    <div class="flex items-center gap-2 mb-2">
+                                        <span class="${typeStyle.className} text-white px-2 py-1 rounded text-xs">
+                                            ${typeStyle.label}
+                                        </span>
+                                    </div>
+                                    <h4 class="font-semibold text-gray-800 mb-1">${course.name}</h4>
+                                    <p class="text-sm text-gray-600">${course.grade}级 第${course.semester}学期</p>
+                                </div>
+                            `;
+                        }).join('')}
+                    </div>
+                </div>
+            `;
+        }
+        
+        // 渲染主应用
+        function renderApp() {
+            const filteredCourses = getFilteredCourses();
+            
+            document.getElementById('app').innerHTML = `
+                <div class="min-h-screen py-8">
+                    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                        <!-- 头部 -->
+                        <div class="text-center mb-12">
+                            <h1 class="text-4xl md:text-6xl font-bold text-white mb-4">
+                                数学学院课程探索工具
+                            </h1>
+                            <p class="text-xl text-white/80 max-w-2xl mx-auto">
+                                探索数学与统计学的知识宝库，规划您的学术之路
+                            </p>
+                        </div>
+                        
+                        <!-- 统计面板 -->
+                        ${renderStatsPanel()}
+                        
+                        <!-- 课程表视图 -->
+                        ${appState.selectedCourses.length > 0 ? renderScheduleView() : ''}
+                        
+                        <!-- 推荐课程 -->
+                        ${renderRecommendations()}
+                        
+                        <!-- 筛选器 -->
+                        <div class="bg-white rounded-xl shadow-lg p-6 mb-8">
+                            <div class="flex flex-wrap gap-4 items-center">
+                                <!-- 搜索框 -->
+                                <div class="flex-1 min-w-64">
+                                    <div class="relative">
+                                        <input 
+                                            type="text" 
+                                            placeholder="搜索课程或教师..." 
+                                            value="${appState.searchQuery}"
+                                            onchange="updateSearch(this.value)"
+                                            class="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                                        >
+                                        <i data-lucide="search" class="w-5 h-5 text-gray-400 absolute left-3 top-2.5"></i>
+                                    </div>
+                                </div>
+                                
+                                <!-- 年级筛选 -->
+                                <div class="flex gap-2">
+                                    ${['all', '2024', '2023', '2022', '2021'].map(grade => `
+                                        <button 
+                                            onclick="updateFilter('selectedGrade', '${grade}')"
+                                            class="filter-btn px-4 py-2 rounded-lg font-medium ${appState.selectedGrade === grade ? 'active' : 'bg-gray-100 text-gray-700 hover:bg-gray-200'}"
+                                        >
+                                            ${grade === 'all' ? '全部年级' : grade + '级'}
+                                        </button>
+                                    `).join('')}
+                                </div>
+                                
+                                <!-- 学期筛选 -->
+                                <div class="flex gap-2">
+                                    ${['all', '1', '2', '3'].map(semester => `
+                                        <button 
+                                            onclick="updateFilter('selectedSemester', '${semester}')"
+                                            class="filter-btn px-4 py-2 rounded-lg font-medium ${appState.selectedSemester === semester ? 'active' : 'bg-gray-100 text-gray-700 hover:bg-gray-200'}"
+                                        >
+                                            ${semester === 'all' ? '全部学期' : '第' + semester + '学期'}
+                                        </button>
+                                    `).join('')}
+                                </div>
+                                
+                                <!-- 方向筛选 -->
+                                <div class="flex gap-2">
+                                    ${['all', '数学', '统计学'].map(direction => `
+                                        <button 
+                                            onclick="updateFilter('selectedDirection', '${direction}')"
+                                            class="filter-btn px-4 py-2 rounded-lg font-medium ${appState.selectedDirection === direction ? 'active' : 'bg-gray-100 text-gray-700 hover:bg-gray-200'}"
+                                        >
+                                            ${direction === 'all' ? '全部方向' : direction}
+                                        </button>
+                                    `).join('')}
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- 课程网格 -->
+                        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                            ${filteredCourses.map(course => renderCourseCard(course)).join('')}
+                        </div>
+                        
+                        ${filteredCourses.length === 0 ? `
+                            <div class="text-center py-16">
+                                <div class="inline-flex items-center justify-center w-16 h-16 bg-gray-100 rounded-full mb-4">
+                                    <i data-lucide="search" class="w-8 h-8 text-gray-400"></i>
+                                </div>
+                                <h3 class="text-xl font-semibold text-gray-600 mb-2">没有找到课程</h3>
+                                <p class="text-gray-500">请尝试调整筛选条件或搜索关键词</p>
+                            </div>
+                        ` : ''}
+                    </div>
+                </div>
+            `;
+            
+            // 初始化Lucide图标
+            if (window.lucide) {
+                lucide.createIcons();
+            }
+        }
+        
+        // 更新筛选器
+        function updateFilter(key, value) {
+            appState[key] = value;
+            renderApp();
+        }
+        
+        // 更新搜索
+        function updateSearch(value) {
+            appState.searchQuery = value;
+            renderApp();
+        }
+        
+        // 渲染错误页面
+        function renderError() {
+            document.getElementById('app').innerHTML = `
+                <div class="min-h-screen flex items-center justify-center">
+                    <div class="text-center">
+                        <div class="inline-flex items-center justify-center w-16 h-16 bg-red-100 rounded-full mb-4">
+                            <i data-lucide="alert-circle" class="w-8 h-8 text-red-600"></i>
+                        </div>
+                        <h2 class="text-2xl font-bold text-white mb-2">加载失败</h2>
+                        <p class="text-white/80 mb-4">无法加载课程数据，请检查数据文件是否存在</p>
+                        <button onclick="location.reload()" class="px-6 py-3 bg-white text-blue-600 rounded-lg font-medium hover:bg-gray-100 transition-colors">
+                            重新加载
+                        </button>
+                    </div>
+                </div>
+            `;
+            
+            if (window.lucide) {
+                lucide.createIcons();
+            }
+        }
+        
+        // 全局函数
+        window.updateFilter = updateFilter;
+        window.updateSearch = updateSearch;
+        window.toggleFavorite = toggleFavorite;
+        window.toggleCourseSelection = toggleCourseSelection;
+        
+        // 初始化应用
+        loadCourseData();
+    </script>
+</body>
+</html>
