@@ -900,6 +900,10 @@ body {
     transition: opacity 0.3s ease;
 }
 
+.modal-overlay.hidden {
+    display: none;
+}
+
 .modal-overlay.show {
     opacity: 1;
 }
